@@ -42,12 +42,6 @@ namespace Microsoft.Azure.Commands.Sql.Auditing.Cmdlet
         [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "The set of the audit action groups")]
         public AuditActionGroups[] AuditActionGroup { get; set; }
 
-        /// <summary>
-        ///  Defines the set of audit actions that would be used by the auditing settings
-        /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "The set of the audit actions")]
-        public string[] AuditAction { get; set; }
-
         [Parameter(Mandatory = false)]
         public SwitchParameter PassThru { get; set; }
 
@@ -175,11 +169,6 @@ namespace Microsoft.Azure.Commands.Sql.Auditing.Cmdlet
             {
                 model.AuditActionGroup = AuditActionGroup;
             }
-
-            if (AuditAction != null && AuditAction.Length != 0)
-            {
-                model.AuditAction = AuditAction;
-            }
         }
 
         protected override AuditingPolicyModel PersistChanges(AuditingPolicyModel model)
@@ -189,8 +178,11 @@ namespace Microsoft.Azure.Commands.Sql.Auditing.Cmdlet
             Action swapAuditType = () => { AuditType = AuditType == AuditType.Blob ? AuditType.Table : AuditType.Blob; };
             swapAuditType();
             var otherAuditingTypePolicyModel = GetEntity();
-            otherAuditingTypePolicyModel.AuditState = AuditStateType.Disabled;
-            base.PersistChanges(otherAuditingTypePolicyModel);
+            if (otherAuditingTypePolicyModel != null)
+            {
+                otherAuditingTypePolicyModel.AuditState = AuditStateType.Disabled;
+                base.PersistChanges(otherAuditingTypePolicyModel);
+            }
             swapAuditType();
             return model;
         }
