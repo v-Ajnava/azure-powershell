@@ -35,7 +35,6 @@ PS C:\> New-AzureRmServiceBusTopicKey -ResourceGroup Default-ServiceBus-WestUS -
 
 Regenerates the secondary connection string for the namespace.
 
-
 ## PARAMETERS
 
 ### -AuthorizationRuleName
@@ -150,25 +149,28 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-###-ResourceGroup
+### -ResourceGroup
  System.String
  
-###-NamespaceName
+
+### -NamespaceName
  System.String
  
-###-AuthorizationRuleName
+
+### -AuthorizationRuleName
  System.String
  
-###-TopicName
+
+### -TopicName
  System.String
  
-###-RegenerateKeys
+
+### -RegenerateKeys
  System.String
 
 ## OUTPUTS
 
 ### Microsoft.Azure.Commands.ServiceBus.Models.ListKeysAttributes
-
 PrimaryConnectionString   : Endpoint=sb://sb-example1.servicebus.windows.net/;SharedAccessKeyName=SBTopicAuthoRule1;SharedAccessKey=Yc+gDnGOLNMTR1RFZXtzhy9BxBp+6/ZMNCsKcQNE7Z0=;EntityPath=SB-Topi
                             c_exampl1
 SecondaryConnectionString : Endpoint=sb://sb-example1.servicebus.windows.net/;SharedAccessKeyName=SBTopicAuthoRule1;SharedAccessKey=E/k/LwYrPVgY0RIx/GWJfTzpvgaUBfMweJJceQcvk3M=;EntityPath=SB-Topi
