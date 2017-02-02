@@ -4,36 +4,66 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-AzureRmServiceBusSubscription
+# Set-AzureRmServiceBusQueueAuthorizationRule
 
 ## SYNOPSIS
-Updates a subscription description for a Service Bus topic in the specified Service Bus namespace.
+Updates the specified authorization rule description for the given Service Bus queue.
 
 ## SYNTAX
 
 ```
-Set-AzureRmServiceBusSubscription [-ResourceGroup] <String> [-NamespaceName] <String> [-TopicName] <String>
- [-SubscriptionObj] <SubscriptionAttributes> [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-AzureRmServiceBusQueueAuthorizationRule [-ResourceGroup] <String> [-NamespaceName] <String>
+ [-QueueName] <String> [-AuthRuleObj] <SharedAccessAuthorizationRuleAttributes>
+ [[-AuthorizationRuleName] <String>] [[-Rights] <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-AzureRmServiceBusSubscription** cmdlet updates the description of the subscription for the Service Bus topic in the specified Service Bus namespace.
+The **Set-AzureRmServiceBusQueueAuthorizationRule** cmdlet updates the description for the specified authorization rule of the given Service Bus queue.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> $subscriptionObj = Get-AzureRmServiceBusSubscription -ResourceGroup Default-ServiceBus-WestUS -NamespaceName SB-Example1 -TopicName SB-Topic_exampl1 -SubscriptionName SB-TopicSubscription-Example1
+PS C:\> $authRuleObj = Get-AzureRmServiceBusQueueAuthorizationRule -ResourceGroup Default-ServiceBus-WestUS -NamespaceName SB-Example1 -QueueName SB-Queue_exampl1 -AuthorizationRuleName SBAuthoRule1
 
-PS C:\> $subscriptionObj.DeadLetteringOnMessageExpiration = $True
-PS C:\> $subscriptionObj.MaxDeliveryCount = 9
+PS C:\> $authRuleObj.Rights.Add("Manage")
 
-PS C:\> Set-AzureRmServiceBusSubscription -ResourceGroup Default-ServiceBus-WestUS -NamespaceName SB-Example1 -TopicName SB-Topic_exampl1 -SubscriptionObj $subscriptionObj
+PS C:\> Set-AzureRmServiceBusQueueAuthorizationRule -ResourceGroup Default-ServiceBus-WestUS -NamespaceName SB-Example1 -QueueName SB-Queue_exampl1 -AuthRuleObj $authRuleObj
 ```
 
-Updates the description for the specified subscription to the given topic. This example updates the **DeadLetteringOnMessageExpiration** property to **true** and **MaxDeliveryCount** to 9.
+Adds **Manage** to the access rights of the authorization rule `SBAuthoRule1` of the queue `SB-Queue_exampl1`.
 
 ## PARAMETERS
+
+### -AuthRuleObj
+The Service Bus queue authorization rule object.
+
+```yaml
+Type: SharedAccessAuthorizationRuleAttributes
+Parameter Sets: (All)
+Aliases: 
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -AuthorizationRuleName
+The authorization rule name. Required if **-AuthruleObj** is not specified.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
 
 ### -Confirm
 Prompts you for confirmation before running the cmdlet.
@@ -65,6 +95,21 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -QueueName
+The Service Bus queue name.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
 ### -ResourceGroup
 The name of the resource group.
 
@@ -80,31 +125,17 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -SubscriptionObj
-The Service Bus subscription definition.
+### -Rights
+The rights; for example 
+@("Listen","Send","Manage"). Required if 'AuthruleObj' not specified.
 
 ```yaml
-Type: SubscriptionAttributes
+Type: String[]
 Parameter Sets: (All)
 Aliases: 
 
-Required: True
-Position: 3
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -TopicName
-The Service Bus topic name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: 
-
-Required: True
-Position: 2
+Required: False
+Position: 4
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -131,38 +162,21 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-###-ResourceGroup
+### -ResourceGroup
  System.String
 
-###-NamespaceName
+### -NamespaceName
  System.String
 
-###-TopicName
+### -QueueName
  System.String
 
-###-SubscriptionObj
- Microsoft.Azure.Commands.ServiceBus.Models.SubscriptionAttributes
+### -AuthRuleObj
+ Microsoft.Azure.Commands.ServiceBus.Models.SharedAccessAuthorizationRuleAttributes
 
 ## OUTPUTS
 
-Name                                      : SB-TopicSubscription-Example1
-Location                                  : West US
-AccessedAt                                : 1/1/0001 12:00:00 AM
-AutoDeleteOnIdle                          : 10675199.02:48:05.4775807
-CountDetails                              : 
-CreatedAt                                 : 1/20/2017 9:59:15 PM
-DefaultMessageTimeToLive                  : 10675199.02:48:05.4775807
-DeadLetteringOnFilterEvaluationExceptions : True
-DeadLetteringOnMessageExpiration          : True
-EnableBatchedOperations                   : True
-EntityAvailabilityStatus                  : Available
-IsReadOnly                                : 
-LockDuration                              : 00:01:00
-MaxDeliveryCount                          : 9
-MessageCount                              : 0
-RequiresSession                           : False
-Status                                    : Active
-UpdatedAt                                 : 1/20/2017 9:59:15 PM
+### Microsoft.Azure.Commands.ServiceBus.Models.SharedAccessAuthorizationRuleAttributes
 
 ## NOTES
 

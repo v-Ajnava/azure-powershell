@@ -1,0 +1,709 @@
+﻿
+[Update-MarkdownHelpModule] 02/02/2017 11:36:28 Determined module name for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help as AzureRM.ServiceBus
+[Update-MarkdownHelpModule] 02/02/2017 11:36:28 [Update-MarkdownHelpModule]2/2/2017 11:36:28 AM
+[Update-MarkdownHelpModule] 02/02/2017 11:36:28 Updating docs for Module AzureRM.ServiceBus in C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help
+[Update-MarkdownHelp] 02/02/2017 11:36:28 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusNamespace.md
+[Update-MarkdownHelp] 02/02/2017 11:36:28 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusNamespaceAuthorizationRule.md
+[Update-MarkdownHelp] 02/02/2017 11:36:28 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusNamespaceKey.md
+[Update-MarkdownHelp] 02/02/2017 11:36:29 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusQueue.md
+[Update-MarkdownHelp] 02/02/2017 11:36:29 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusQueueAuthorizationRule.md
+[Update-MarkdownHelp] 02/02/2017 11:36:29 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusQueueKey.md
+[Update-MarkdownHelp] 02/02/2017 11:36:29 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusSubscription.md
+[Update-MarkdownHelp] 02/02/2017 11:36:30 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusTopic.md
+[Update-MarkdownHelp] 02/02/2017 11:36:30 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusTopicAuthorizationRule.md
+[Update-MarkdownHelp] 02/02/2017 11:36:30 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\Get-AzureRmServiceBusTopicKey.md
+[Update-MarkdownHelp] 02/02/2017 11:36:31 command  not found in the session, skipping upgrade for C:\gitrepos\azure-powershell\src\ResourceManager\ServiceBus\Commands.ServiceBus\help\New-AzureRmServiceBusNamespace.md
+---- UPDATING Cmdlet : New-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusSubscription ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusSubscription ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopic ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopic ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+
+[Update-MarkdownHelpModule] 02/02/2017 11:36:41 Creating new markdown for command Get-AzureRmServiceBusNamespace
+[Update-MarkdownHelpModule] 02/02/2017 11:36:41 Creating new markdown for command Get-AzureRmServiceBusNamespaceAuthorizationRule
+[Update-MarkdownHelpModule] 02/02/2017 11:36:41 Creating new markdown for command Get-AzureRmServiceBusNamespaceKey
+[Update-MarkdownHelpModule] 02/02/2017 11:36:41 Creating new markdown for command Get-AzureRmServiceBusQueue
+[Update-MarkdownHelpModule] 02/02/2017 11:36:41 Creating new markdown for command Get-AzureRmServiceBusQueueAuthorizationRule
+[Update-MarkdownHelpModule] 02/02/2017 11:36:41 Creating new markdown for command Get-AzureRmServiceBusQueueKey
+[Update-MarkdownHelpModule] 02/02/2017 11:36:41 Creating new markdown for command Get-AzureRmServiceBusSubscription
+[Update-MarkdownHelpModule] 02/02/2017 11:36:41 Creating new markdown for command Get-AzureRmServiceBusTopic
+[Update-MarkdownHelpModule] 02/02/2017 11:36:41 Creating new markdown for command Get-AzureRmServiceBusTopicAuthorizationRule
+[Update-MarkdownHelpModule] 02/02/2017 11:36:42 Creating new markdown for command Get-AzureRmServiceBusTopicKey
+[Update-MarkdownHelpModule] 02/02/2017 11:36:42 Creating new markdown for command New-AzureRmServiceBusNamespace
+[Update-MarkdownHelpModule] 02/02/2017 12:07:52 Determined module name for C:\Users\sethm.REDMOND\Downloads\help as AzureRM.ServiceBus
+[Update-MarkdownHelpModule] 02/02/2017 12:07:52 [Update-MarkdownHelpModule]2/2/2017 12:07:52 PM
+[Update-MarkdownHelpModule] 02/02/2017 12:07:52 Updating docs for Module AzureRM.ServiceBus in C:\Users\sethm.REDMOND\Downloads\help
+[Update-MarkdownHelp] 02/02/2017 12:07:52 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusNamespace.md
+[Update-MarkdownHelp] 02/02/2017 12:07:52 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusNamespaceAuthorizationRule.md
+[Update-MarkdownHelp] 02/02/2017 12:07:53 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusNamespaceKey.md
+[Update-MarkdownHelp] 02/02/2017 12:07:53 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusQueue.md
+[Update-MarkdownHelp] 02/02/2017 12:07:53 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusQueueAuthorizationRule.md
+[Update-MarkdownHelp] 02/02/2017 12:07:53 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusQueueKey.md
+[Update-MarkdownHelp] 02/02/2017 12:07:54 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusSubscription.md
+[Update-MarkdownHelp] 02/02/2017 12:07:54 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusTopic.md
+[Update-MarkdownHelp] 02/02/2017 12:07:54 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusTopicAuthorizationRule.md
+[Update-MarkdownHelp] 02/02/2017 12:07:54 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\Get-AzureRmServiceBusTopicKey.md
+[Update-MarkdownHelp] 02/02/2017 12:07:55 command  not found in the session, skipping upgrade for C:\Users\sethm.REDMOND\Downloads\help\New-AzureRmServiceBusNamespace.md
+---- UPDATING Cmdlet : New-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusSubscription ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusSubscription ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopic ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopic ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+	Parameter Updated: Confirm
+		Position updated from Named to 
+
+	Parameter Updated: WhatIf
+		Position updated from Named to 
+
+---- COMPLETED UPDATING Cmdlet : New-AzureRmServiceBusTopicAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Remove-AzureRmServiceBusQueue ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusNamespaceAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+
+---- UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+	Parameter Set Added: __AllParameterSets
+
+	Parameter Set Deleted: 
+
+	Parameter Set Name Updated: __AllParameterSets
+		Old Set: 
+		New Set: __AllParameterSets
+
+---- COMPLETED UPDATING Cmdlet : Set-AzureRmServiceBusQueueAuthorizationRule ----
+
+
+[Update-MarkdownHelpModule] 02/02/2017 12:08:05 Creating new markdown for command Get-AzureRmServiceBusNamespace
+[Update-MarkdownHelpModule] 02/02/2017 12:08:05 Creating new markdown for command Get-AzureRmServiceBusNamespaceAuthorizationRule
+[Update-MarkdownHelpModule] 02/02/2017 12:08:05 Creating new markdown for command Get-AzureRmServiceBusNamespaceKey
+[Update-MarkdownHelpModule] 02/02/2017 12:08:06 Creating new markdown for command Get-AzureRmServiceBusQueue
+[Update-MarkdownHelpModule] 02/02/2017 12:08:06 Creating new markdown for command Get-AzureRmServiceBusQueueAuthorizationRule
+[Update-MarkdownHelpModule] 02/02/2017 12:08:06 Creating new markdown for command Get-AzureRmServiceBusQueueKey
+[Update-MarkdownHelpModule] 02/02/2017 12:08:06 Creating new markdown for command Get-AzureRmServiceBusSubscription
+[Update-MarkdownHelpModule] 02/02/2017 12:08:06 Creating new markdown for command Get-AzureRmServiceBusTopic
+[Update-MarkdownHelpModule] 02/02/2017 12:08:06 Creating new markdown for command Get-AzureRmServiceBusTopicAuthorizationRule
+[Update-MarkdownHelpModule] 02/02/2017 12:08:06 Creating new markdown for command Get-AzureRmServiceBusTopicKey
+[Update-MarkdownHelpModule] 02/02/2017 12:08:06 Creating new markdown for command New-AzureRmServiceBusNamespace

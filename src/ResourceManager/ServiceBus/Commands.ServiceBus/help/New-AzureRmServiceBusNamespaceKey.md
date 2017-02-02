@@ -127,22 +127,24 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-###-ResourceGroup
+### -ResourceGroup
  System.String
  
-###-NamespaceName
+
+### -NamespaceName
  System.String
  
-###-AuthorizationRuleName
+
+### -AuthorizationRuleName
  System.String
  
-###-RegenerateKeys
+
+### -RegenerateKeys
  System.String
 
 ## OUTPUTS
 
 ### Microsoft.Azure.Management.ServiceBus.Models.ResourceListKeys
-
 PrimaryConnectionString   : Endpoint=sb://sb-example1.servicebus.windows.net/;SharedAccessKeyName=AuthoRule1;SharedAccessKey=HBLpbY6aEDir3cJnsqrXV8eicVe8glQUzH79r+TAsxQ=
 SecondaryConnectionString : Endpoint=sb://sb-example1.servicebus.windows.net/;SharedAccessKeyName=AuthoRule1;SharedAccessKey=0Ovukkl5pzyffid7IVFPXEoXmRUXaf3hNq9dzVS89/4=
 PrimaryKey                : HBLpbY6aEDir3cJnsqrXV8eicVe8glQUzH79r+TAsxQ=
