@@ -13,40 +13,69 @@
 // ----------------------------------------------------------------------------------
 
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
+using Microsoft.Azure.Commands.ServiceBus.Models;
+using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
 using System.Management.Automation;
 namespace Microsoft.Azure.Commands.ServiceBus.Commands.Topic
 {
     /// <summary>
     /// 'Remove-AzureRmServiceBusTopic' Cmdlet removes the specified ServiceBus Topic
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, ServicebusTopicVerb , SupportsShouldProcess = true)]
+    [Cmdlet(VerbsCommon.Remove, ServicebusTopicVerb, DefaultParameterSetName = TopicParameterSet, SupportsShouldProcess = true)]
     public class RemoveAzureRmServiceBusTopic : AzureServiceBusCmdletBase
     {
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
+        [Parameter(Mandatory = true, ParameterSetName = TopicParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
         [ResourceGroupCompleter]
         [ValidateNotNullOrEmpty]
         [Alias(AliasResourceGroup)]
         public string ResourceGroupName { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
+        [Parameter(Mandatory = true, ParameterSetName = TopicParameterSet, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
         [ValidateNotNullOrEmpty]
         [Alias(AliasNamespaceName)]
         public string Namespace { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, HelpMessage = "Topic Name")]
+        [Parameter(Mandatory = true, ParameterSetName = TopicParameterSet, ValueFromPipelineByPropertyName = true, Position = 2, HelpMessage = "Topic Name")]
         [ValidateNotNullOrEmpty]
         [Alias(AliasTopicName)]
         public string Name { get; set; }
 
+        [Parameter(Mandatory = true, ParameterSetName = TopicInputObjectParameterSet, ValueFromPipeline = true, Position = 0, HelpMessage = "Topic Object")]
+        [ValidateNotNullOrEmpty]
+        public PSTopicAttributes InputObject { get; set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = TopicResourceIdParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "Topic Resource Id")]
+        [ValidateNotNullOrEmpty]
+        public string ResourceId { get; set; }
+
         public override void ExecuteCmdlet()
         {
-            // delete a Topic             
-
-            if (ShouldProcess(target: Name, action: string.Format(Resources.RemoveTopic, Name, Namespace)))
+            // delete a Topic
+            if (ParameterSetName.Equals(TopicResourceIdParameterSet))
             {
-                WriteObject(Client.DeleteQueue(ResourceGroupName, Namespace, Name));
-            }
+                ResourceIdentifier getParamGeoDR = GetResourceDetailsFromId(ResourceId);
 
+                if (ShouldProcess(target: Name, action: string.Format(Resources.RemoveTopic, getParamGeoDR.ResourceName, getParamGeoDR.ParentResource)))
+                {
+                    WriteObject(Client.DeleteTopic(getParamGeoDR.ResourceGroupName, getParamGeoDR.ParentResource, getParamGeoDR.ResourceName));
+                }
+            }
+            else if (ParameterSetName.Equals(TopicInputObjectParameterSet))
+            {
+                ResourceIdentifier getParamGeoDR = GetResourceDetailsFromId(InputObject.Id);
+
+                if (ShouldProcess(target: Name, action: string.Format(Resources.RemoveTopic, getParamGeoDR.ResourceName, getParamGeoDR.ParentResource)))
+                {
+                    WriteObject(Client.DeleteTopic(getParamGeoDR.ResourceGroupName, getParamGeoDR.ParentResource, getParamGeoDR.ResourceName));
+                }
+            }
+            else
+            {
+                if (ShouldProcess(target: Name, action: string.Format(Resources.RemoveTopic, Name, Namespace)))
+                {
+                    WriteObject(Client.DeleteTopic(ResourceGroupName, Namespace, Name));
+                }
+            }
         }
     }
 }

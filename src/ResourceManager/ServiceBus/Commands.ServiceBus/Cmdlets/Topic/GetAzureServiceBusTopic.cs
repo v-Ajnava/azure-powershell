@@ -14,6 +14,7 @@
 
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Commands.ServiceBus.Models;
+using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
 using System.Collections.Generic;
 using System.Management.Automation;
 
@@ -24,39 +25,79 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Topic
     /// <para> If ServiceBus Topic name provided, a single ServiceBus Topic detials will be returned</para>
     /// <para> If ServiceBus Topic name not provided, list of ServiceBus Topic will be returned</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, ServicebusTopicVerb), OutputType(typeof(PSTopicAttributes))]
+    [Cmdlet(VerbsCommon.Get, ServicebusTopicVerb, DefaultParameterSetName = TopicParameterSet), OutputType(typeof(PSTopicAttributes))]
     public class GetAzureRmServiceBusTopic : AzureServiceBusCmdletBase
     {
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
+        [Parameter(Mandatory = true, ParameterSetName = TopicParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
         [ResourceGroupCompleter]
         [ValidateNotNullOrEmpty]
         [Alias(AliasResourceGroup)]
         public string ResourceGroupName { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
+        [Parameter(Mandatory = true, ParameterSetName = TopicParameterSet, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
         [ValidateNotNullOrEmpty]
         [Alias(AliasNamespaceName)]
         public string Namespace { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, Position = 2, HelpMessage = "Topic Name")]
+        [Parameter(Mandatory = true, ParameterSetName = NamespaceInputObjectParameterSet, ValueFromPipeline = true, Position = 0, HelpMessage = "Namespace Object")]
+        [ValidateNotNullOrEmpty]
+        public PSNamespaceAttributes InputObject { get; set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = NamespaceResourceIdParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "Namespace Resource Id")]
+        [ValidateNotNullOrEmpty]
+        public string ResourceId { get; set; }
+
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Topic Name")]
         [ValidateNotNullOrEmpty]
         [Alias(AliasTopicName)]
         public string Name { get; set; }
 
         public override void ExecuteCmdlet()
         {
-            if (!string.IsNullOrEmpty(Name))
+
+            if (ParameterSetName.Equals(NamespaceInputObjectParameterSet))
             {
-                PSTopicAttributes topicAttributes = Client.GetTopic(ResourceGroupName, Namespace, Name);
-                WriteObject(topicAttributes);
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    PSTopicAttributes topicAttributes = Client.GetTopic(InputObject.ResourceGroup, InputObject.Name, Name);
+                    WriteObject(topicAttributes);
+                }
+                else
+                {
+                    IEnumerable<PSTopicAttributes> topicAttributes = Client.ListTopics(InputObject.ResourceGroup, InputObject.Name);
+                    WriteObject(topicAttributes, true);
+                }
+            }
+            else if (ParameterSetName.Equals(NamespaceResourceIdParameterSet))
+            {
+                ResourceIdentifier getParamGeoDR = new ResourceIdentifier();
+                getParamGeoDR = GetResourceDetailsFromId(ResourceId);
+
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    PSTopicAttributes topicAttributes = Client.GetTopic(getParamGeoDR.ResourceGroupName, getParamGeoDR.ResourceName, Name);
+                    WriteObject(topicAttributes);
+                }
+                else
+                {
+                    IEnumerable<PSTopicAttributes> topicAttributes = Client.ListTopics(getParamGeoDR.ResourceGroupName, getParamGeoDR.ResourceName);
+                    WriteObject(topicAttributes, true);
+                }
+
             }
             else
             {
-               IEnumerable<PSTopicAttributes> topicAttributes = Client.ListTopics(ResourceGroupName, Namespace);
-               WriteObject(topicAttributes,true);
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    PSTopicAttributes topicAttributes = Client.GetTopic(ResourceGroupName, Namespace, Name);
+                    WriteObject(topicAttributes);
+                }
+                else
+                {
+                    IEnumerable<PSTopicAttributes> topicAttributes = Client.ListTopics(ResourceGroupName, Namespace);
+                    WriteObject(topicAttributes, true);
+                }
             }
-
-            
         }
     }
 }

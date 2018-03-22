@@ -51,7 +51,8 @@ namespace Microsoft.Azure.Commands.ServiceBus.Models
                 ForwardTo = quResource.ForwardTo;
                 ForwardDeadLetteredMessagesTo = quResource.ForwardDeadLetteredMessagesTo;
                 EnableBatchedOperations = quResource.EnableBatchedOperations;
-
+                Id = quResource.Id;
+                Type = quResource.Type;
             }
         }
 
@@ -184,6 +185,15 @@ namespace Microsoft.Azure.Commands.ServiceBus.Models
         /// enabled..
         /// </summary>
         public bool? EnableBatchedOperations { get; set; }
+
+        //
+        // Summary:
+        //     Gets resource Id
+        public string Id { get; }
+        //
+        // Summary:
+        //     Gets resource type
+        public string Type { get; }
 
 
     }

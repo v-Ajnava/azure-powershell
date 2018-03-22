@@ -17,6 +17,7 @@ using System.Collections;
 using System.Management.Automation;
 using System.Collections.Generic;
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
+using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
 
 namespace Microsoft.Azure.Commands.ServiceBus.Commands.Queue
 {
@@ -25,19 +26,27 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Queue
     /// <para> If Queue name provided, a single Queue detials will be returned</para>
     /// <para> If Queue name not provided, list of Queue will be returned</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, ServicebusQueueVerb), OutputType(typeof(PSQueueAttributes))]
+    [Cmdlet(VerbsCommon.Get, ServicebusQueueVerb, DefaultParameterSetName = QueueParameterSet), OutputType(typeof(PSQueueAttributes))]
     public class GetAzureRmServiceBusQueue : AzureServiceBusCmdletBase
     {
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
+        [Parameter(Mandatory = true, ParameterSetName = QueueParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
         [ResourceGroupCompleter]
         [Alias("ResourceGroup")]
         [ValidateNotNullOrEmpty]
         public string ResourceGroupName { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
+        [Parameter(Mandatory = true, ParameterSetName = QueueParameterSet, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
         [Alias(AliasNamespaceName)]
         [ValidateNotNullOrEmpty]
         public string Namespace { get; set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = NamespaceInputObjectParameterSet, ValueFromPipeline = true, Position = 0, HelpMessage = "Namespace Object")]
+        [ValidateNotNullOrEmpty]
+        public PSNamespaceAttributes InputObject { get; set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = NamespaceResourceIdParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "Namespace Resource Id")]
+        [ValidateNotNullOrEmpty]
+        public string ResourceId { get; set; }
 
         [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Queue Name")]
         [Alias(AliasQueueName)]
@@ -46,18 +55,49 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Queue
 
         public override void ExecuteCmdlet()
         {
-            if (!string.IsNullOrEmpty(Name))
+            ResourceIdentifier getResourceIdParam = new ResourceIdentifier();
+
+            if (ParameterSetName.Equals(NamespaceResourceIdParameterSet))
             {
-                var queueAttributes = Client.GetQueue(ResourceGroupName, Namespace, Name);
-                WriteObject(queueAttributes);
+                getResourceIdParam = GetResourceDetailsFromId(ResourceId);
+
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    var queueAttributes = Client.GetQueue(getResourceIdParam.ResourceGroupName, getResourceIdParam.ResourceName, Name);
+                    WriteObject(queueAttributes);
+                }
+                else
+                {
+                    IEnumerable<PSQueueAttributes> queueAttributes = Client.ListQueues(getResourceIdParam.ResourceGroupName, getResourceIdParam.ResourceName);
+                    WriteObject(queueAttributes, true);
+                }
+            }
+            else if (ParameterSetName.Equals(NamespaceInputObjectParameterSet))
+            {
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    var queueAttributes = Client.GetQueue(InputObject.ResourceGroup, InputObject.Name, Name);
+                    WriteObject(queueAttributes);
+                }
+                else
+                {
+                    IEnumerable<PSQueueAttributes> queueAttributes = Client.ListQueues(InputObject.ResourceGroup, InputObject.Name);
+                    WriteObject(queueAttributes, true);
+                }
             }
             else
             {
-                IEnumerable<PSQueueAttributes> queueAttributes = Client.ListQueues(ResourceGroupName, Namespace);
-                WriteObject(queueAttributes,true);
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    var queueAttributes = Client.GetQueue(ResourceGroupName, Namespace, Name);
+                    WriteObject(queueAttributes);
+                }
+                else
+                {
+                    IEnumerable<PSQueueAttributes> queueAttributes = Client.ListQueues(ResourceGroupName, Namespace);
+                    WriteObject(queueAttributes, true);
+                }
             }
-
-            
         }
     }
 }

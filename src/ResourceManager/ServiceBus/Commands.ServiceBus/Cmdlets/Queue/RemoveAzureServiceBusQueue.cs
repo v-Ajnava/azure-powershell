@@ -13,6 +13,8 @@
 // ----------------------------------------------------------------------------------
 
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
+using Microsoft.Azure.Commands.ServiceBus.Models;
+using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
 using System.Management.Automation;
 namespace Microsoft.Azure.Commands.ServiceBus.Commands.Queue
 {
@@ -38,13 +40,55 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Queue
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 
+        [Parameter(Mandatory = true, ParameterSetName = QueueInputObjectParameterSet, ValueFromPipeline = true, Position = 0, HelpMessage = "Queue Object")]
+        [ValidateNotNullOrEmpty]
+        public PSQueueAttributes InputObject { get; set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = QueueResourceIdParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "Queue Resource Id")]
+        [ValidateNotNullOrEmpty]
+        public string ResourceId { get; set; }
+
         public override void ExecuteCmdlet()
         {
-            // delete a Queue 
-            if (ShouldProcess(target: Name, action: string.Format(Resources.RemoveQueue, Name, Namespace)))
+
+            ResourceIdentifier getResourceIdParam = new ResourceIdentifier();
+
+            if (ParameterSetName.Equals(QueueResourceIdParameterSet))
             {
-                WriteObject(Client.DeleteQueue(ResourceGroupName, Namespace, Name));
+                DeletewithResourceID(ResourceId);
             }
+            else if (ParameterSetName.Equals(QueueInputObjectParameterSet))
+            {
+                DeletewithResourceID(InputObject.Id);
+            }
+            else
+            {
+                DeletewithResourceID();
+            }
+        }
+
+        public void DeletewithResourceID(string resourceID = null)
+        {
+            if (resourceID != null)
+            {
+                ResourceIdentifier getResourceIdParam = new ResourceIdentifier();
+                getResourceIdParam = GetResourceDetailsFromId(ResourceId);
+
+                // delete a Queue 
+                if (ShouldProcess(target: Name, action: string.Format(Resources.RemoveQueue, getResourceIdParam.ResourceName, getResourceIdParam.ParentResource)))
+                {
+                    WriteObject(Client.DeleteQueue(getResourceIdParam.ResourceGroupName, getResourceIdParam.ResourceName, getResourceIdParam.ParentResource));
+                }
+            }
+            else
+            {
+                // delete a Queue 
+                if (ShouldProcess(target: Name, action: string.Format(Resources.RemoveQueue, Name, Namespace)))
+                {
+                    WriteObject(Client.DeleteQueue(ResourceGroupName, Namespace, Name));
+                }
+            }  
+            
         }
     }
 }

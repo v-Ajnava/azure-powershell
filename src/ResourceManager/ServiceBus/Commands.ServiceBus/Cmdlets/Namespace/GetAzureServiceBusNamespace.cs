@@ -17,6 +17,7 @@ using Microsoft.Azure.Commands.ServiceBus.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
 
 
 namespace Microsoft.Azure.Commands.ServiceBus.Commands.Namespace
@@ -26,17 +27,21 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Namespace
     /// <para> If Namespace name provided, a single Namespace detials will be returned</para>
     /// <para> If Namespace name not provided, list of Namespace will be returned</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, ServiceBusNamespaceVerb), OutputType(typeof(List<PSNamespaceAttributes>))]
+    [Cmdlet(VerbsCommon.Get, ServiceBusNamespaceVerb, DefaultParameterSetName = NamespaceParameterSet), OutputType(typeof(List<PSNamespaceAttributes>))]
     public class GetAzureRmServiceBusNamespace : AzureServiceBusCmdletBase
     {
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
+        [Parameter(Mandatory = false, ParameterSetName = NamespaceParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
         [ResourceGroupCompleter]
         [Alias("ResourceGroup")]
         public string ResourceGroupName { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
+        [Parameter(Mandatory = false, ParameterSetName = NamespaceParameterSet, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
         [Alias(AliasNamespaceName)]
         public string Name { get; set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = ResourceIdParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "Namespace Resource Id")]
+        [ValidateNotNullOrEmpty]
+        public string ResourceId { get; set; }
 
         /// <summary>
         /// Gets a Namespace from the service.
@@ -44,24 +49,47 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Namespace
         /// <returns>A single Namespace</returns>
         public override void ExecuteCmdlet()
         {
-            if (!string.IsNullOrEmpty(ResourceGroupName) && !string.IsNullOrEmpty(Name))
+            ResourceIdentifier getParamGeoDR = new ResourceIdentifier();
+
+            if (ParameterSetName == ResourceIdParameterSet)
             {
-                // Get a namespace
-                PSNamespaceAttributes attributes = Client.GetNamespace(ResourceGroupName, Name);
-                WriteObject(attributes);
+                getParamGeoDR = GetResourceDetailsFromId(ResourceId);
+
+                if (getParamGeoDR.ResourceGroupName != null && getParamGeoDR.ResourceName != null)
+                {
+                    // Get a namespace
+                    PSNamespaceAttributes attributes = Client.GetNamespace(getParamGeoDR.ResourceGroupName, getParamGeoDR.ResourceName);
+                    WriteObject(attributes);
+                }
+                else if (getParamGeoDR.ResourceGroupName != null && getParamGeoDR.ResourceName == null)
+                {
+                    // List all namespaces in given resource group 
+                    IEnumerable<PSNamespaceAttributes> namespaceList = Client.ListNamespaces(getParamGeoDR.ResourceGroupName);
+                    WriteObject(namespaceList.ToList(), true);
+                }
             }
-            else if (!string.IsNullOrEmpty(ResourceGroupName) && string.IsNullOrEmpty(Name))
+
+            if (ParameterSetName == NamespaceParameterSet)
             {
-                // List all namespaces in given resource group 
-                IEnumerable<PSNamespaceAttributes> namespaceList = Client.ListNamespaces(ResourceGroupName);
-                WriteObject(namespaceList.ToList(), true);
-            }
-            else
-            {
-                // List all namespaces in the given subscription
-                IEnumerable<PSNamespaceAttributes> namespaceList = Client.ListAllNamespaces();
-                WriteObject(namespaceList.ToList(), true);
-            }
+                if (!string.IsNullOrEmpty(ResourceGroupName) && !string.IsNullOrEmpty(Name))
+                {
+                    // Get a namespace
+                    PSNamespaceAttributes attributes = Client.GetNamespace(ResourceGroupName, Name);
+                    WriteObject(attributes);
+                }
+                else if (!string.IsNullOrEmpty(ResourceGroupName) && string.IsNullOrEmpty(Name))
+                {
+                    // List all namespaces in given resource group 
+                    IEnumerable<PSNamespaceAttributes> namespaceList = Client.ListNamespaces(ResourceGroupName);
+                    WriteObject(namespaceList.ToList(), true);
+                }
+                else
+                {
+                    // List all namespaces in the given subscription
+                    IEnumerable<PSNamespaceAttributes> namespaceList = Client.ListAllNamespaces();
+                    WriteObject(namespaceList.ToList(), true);
+                }
+            }            
         }
     }
 }

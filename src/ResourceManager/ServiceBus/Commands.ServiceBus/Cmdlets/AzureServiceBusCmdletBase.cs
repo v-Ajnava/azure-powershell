@@ -77,13 +77,20 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands
         //Parameter sets for ResourceID
         protected const string GeoDRConfigResourceIdParameterSet = "GeoDRConfigResourceIdParameterSet";
         protected const string NamespaceResourceIdParameterSet = "NamespaceResourceIdParameterSet";
+        protected const string TopicResourceIdParameterSet = "TopicResourceIdParameterSet";
+        protected const string QueueResourceIdParameterSet = "QueueResourceIdParameterSet";
+        protected const string SubscriptionResourceIdParameterSet = "SubscriptionResourceIdParameterSet";
+        protected const string RuleResourceIdParameterSet = "RuleResourceIdParameterSet";
         protected const string ResourceIdParameterSet = "ResourceIdParameterSet";
 
         //Parameter sets for Properties
-        protected const string NamespacePropertiesParameterSet = "NamespacePropertiesSet";
-        protected const string QueuePropertiesParameterSet = "QueuePropertiesSet";
-        protected const string TopicPropertiesParameterSet = "TopicPropertiesSet";
-        protected const string SubscriptionPropertiesParameterSet = "SubscriptionPropertiesSet";
+        protected const string NamespaceParameterSet = "NamespacePropertiesSet";
+        protected const string QueueParameterSet = "QueuePropertiesSet";
+        protected const string TopicParameterSet = "TopicPropertiesSet";
+        protected const string SubscriptionParameterSet = "SubscriptionPropertiesSet";
+        protected const string RuleParameterSet = "RulePropertiesSet";
+        protected const string AuthoRulePropertiesParameterSet = "AuthoRulePropertiesSet";
+        protected const string GeoDRBreakPairFailOverParameterSet = "GeoDRBreakPairFailOverPropertiesSet";
         protected const string GeoDRParameterSet = "GeoDRPropertiesSet";
 
         //Alias - used in Cmdlets

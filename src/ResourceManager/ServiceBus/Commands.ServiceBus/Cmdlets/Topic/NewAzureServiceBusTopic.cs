@@ -14,6 +14,7 @@
 
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Commands.ServiceBus.Models;
+using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
 using Microsoft.Azure.Management.ServiceBus.Models;
 using System.Management.Automation;
 using System.Xml;
@@ -23,21 +24,29 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Topic
     /// <summary>
     /// 'New-AzureRmServiceBusTopic' Cmdlet creates a new ServiceBus Topic
     /// </summary>
-    [Cmdlet(VerbsCommon.New, ServicebusTopicVerb, SupportsShouldProcess = true), OutputType(typeof(PSTopicAttributes))]
+    [Cmdlet(VerbsCommon.New, ServicebusTopicVerb, DefaultParameterSetName = TopicParameterSet, SupportsShouldProcess = true), OutputType(typeof(PSTopicAttributes))]
     public class NewAzureRmServiceBusTopic : AzureServiceBusCmdletBase
     {
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
+        [Parameter(Mandatory = true, ParameterSetName = TopicParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "The name of the resource group")]
         [ResourceGroupCompleter]
         [ValidateNotNullOrEmpty]
         [Alias(AliasResourceGroup)]
         public string ResourceGroupName { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
+        [Parameter(Mandatory = true, ParameterSetName = TopicParameterSet, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Namespace Name")]
         [ValidateNotNullOrEmpty]
         [Alias(AliasNamespaceName)]
         public string Namespace { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, HelpMessage = "Topic Name")]
+        [Parameter(Mandatory = true, ParameterSetName = NamespaceInputObjectParameterSet, ValueFromPipeline = true, Position = 0, HelpMessage = "Namespace Object")]
+        [ValidateNotNullOrEmpty]
+        public PSNamespaceAttributes InputObject { get; set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = NamespaceResourceIdParameterSet, ValueFromPipelineByPropertyName = true, Position = 0, HelpMessage = "Namespace Resource Id")]
+        [ValidateNotNullOrEmpty]
+        public string ResourceId { get; set; }
+
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, HelpMessage = "Topic Name")]
         [ValidateNotNullOrEmpty]
         [Alias(AliasTopicName)]
         public string Name { get; set; }
@@ -89,45 +98,65 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Topic
 
         public override void ExecuteCmdlet()
         {
-            PSTopicAttributes topicAttributes = new PSTopicAttributes();
-
-            PSNamespaceAttributes getNamespaceLoc = Client.GetNamespace(ResourceGroupName, Namespace);            
+            PSTopicAttributes topicAttributes = new PSTopicAttributes();   
             
             topicAttributes.Name = Name;
 
-            if (EnablePartitioning != null)
-            { topicAttributes.EnablePartitioning = EnablePartitioning; }            
+            if(EnablePartitioning != null)
+            topicAttributes.EnablePartitioning = EnablePartitioning;
+            
             
             if (AutoDeleteOnIdle != null)
-            { topicAttributes.AutoDeleteOnIdle = AutoDeleteOnIdle; }
+                topicAttributes.AutoDeleteOnIdle = AutoDeleteOnIdle;
 
             if (DefaultMessageTimeToLive != null)
-            { topicAttributes.DefaultMessageTimeToLive = DefaultMessageTimeToLive; }
+                topicAttributes.DefaultMessageTimeToLive = DefaultMessageTimeToLive;
 
             if (DuplicateDetectionHistoryTimeWindow != null)
-            { topicAttributes.DuplicateDetectionHistoryTimeWindow = DuplicateDetectionHistoryTimeWindow; }
+                topicAttributes.DuplicateDetectionHistoryTimeWindow = DuplicateDetectionHistoryTimeWindow;
+
 
             if (EnableBatchedOperations != null)
-            { topicAttributes.EnableBatchedOperations = EnableBatchedOperations; }
+                topicAttributes.EnableBatchedOperations = EnableBatchedOperations;            
 
             if (EnableExpress != null)
-            { topicAttributes.EnableExpress = EnableExpress; }
+                topicAttributes.EnableExpress = EnableExpress;            
 
             if (MaxSizeInMegabytes != null)
-            { topicAttributes.MaxSizeInMegabytes = (int?)MaxSizeInMegabytes; }
+                topicAttributes.MaxSizeInMegabytes = (int?)MaxSizeInMegabytes;
 
             if (RequiresDuplicateDetection != null)
-            { topicAttributes.RequiresDuplicateDetection = RequiresDuplicateDetection; }
+                topicAttributes.RequiresDuplicateDetection = RequiresDuplicateDetection;
 
             if (SupportOrdering != null)
-            { topicAttributes.SupportOrdering = SupportOrdering; }
+                topicAttributes.SupportOrdering = SupportOrdering;
 
             if (SizeInBytes != null)
-            { topicAttributes.SizeInBytes = SizeInBytes; }
-            
-            if (ShouldProcess(target: Name, action: string.Format(Resources.CreateTopic, Name, Namespace)))
+                topicAttributes.SizeInBytes = SizeInBytes;
+
+            if (ParameterSetName.Equals(NamespaceInputObjectParameterSet))
             {
-                WriteObject(Client.CreateUpdateTopic(ResourceGroupName, Namespace, Name, topicAttributes));
+                if (ShouldProcess(target: Name, action: string.Format(Resources.CreateTopic, Name, InputObject.Name)))
+                {
+                    WriteObject(Client.CreateUpdateTopic(InputObject.ResourceGroup, InputObject.Name, Name, topicAttributes));
+                }
+            }
+            else if (ParameterSetName.Equals(NamespaceResourceIdParameterSet))
+            {
+                ResourceIdentifier getParamGeoDR = new ResourceIdentifier();
+                getParamGeoDR = GetResourceDetailsFromId(ResourceId);
+
+                if (ShouldProcess(target: Name, action: string.Format(Resources.CreateTopic, Name, getParamGeoDR.ResourceName)))
+                {
+                    WriteObject(Client.CreateUpdateTopic(getParamGeoDR.ResourceGroupName, getParamGeoDR.ResourceName, Name, topicAttributes));
+                }
+            }
+            else
+            {
+                if (ShouldProcess(target: Name, action: string.Format(Resources.CreateTopic, Name, Namespace)))
+                {
+                    WriteObject(Client.CreateUpdateTopic(ResourceGroupName, Namespace, Name, topicAttributes));
+                }
             }
         }
     }
