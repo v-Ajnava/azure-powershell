@@ -38,6 +38,13 @@ namespace Microsoft.Azure.Commands.ServiceBus.Test.ScenarioTests
         public void ServiceBusNameSpaceAuth_CURD_Tests()
         {
             ServiceBusController.NewInstance.RunPsTest("ServiceBusNameSpaceAuthTests");
-        }        
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void ServiceBusNameSpace_MaxCount_Tests()
+        {
+            ServiceBusController.NewInstance.RunPsTest("ServiceBusTestsMaxCount");
+        }
     }
 }

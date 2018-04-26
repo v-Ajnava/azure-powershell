@@ -12,6 +12,33 @@
 # limitations under the License.
 # ----------------------------------------------------------------------------------
 
+
+
+function ServiceBusTestsMaxCount
+{
+     # Setup    
+    $location = Get-Location
+	$resourceGroupName = "alitest"
+	$namespaceName = "sdk-Namespace-1130"
+	$topicname = "sdk-Topic-1130"
+	$subName = "sdk-Subscription-1130"
+
+	$getNamespace = Get-AzureRmServiceBusNamespace -ResourceGroupName $resourceGroupName -MaxCount 4
+
+    $getQueues = Get-AzureRmServiceBusQueue -ResourceGroupName $resourceGroupName -Namespace $namespaceName -MaxCount 5
+
+	$getTopics = Get-AzureRmServiceBusTopic -ResourceGroupName $resourceGroupName -Namespace $namespaceName -MaxCount 5
+
+	$getSubscriptions = Get-AzureRmServiceBusSubscription -ResourceGroupName $resourceGroupName -Namespace $namespaceName -Topic $topicname -MaxCount 5
+
+	$getQueues = Get-AzureRmServiceBusRule -ResourceGroupName $resourceGroupName -Namespace $namespaceName -Topic $topicname -Subscription $subName -MaxCount 5
+
+}
+
+
+
+
+
 <#
 .SYNOPSIS
 Tests EventHub Namespace Create List Remove operations.
