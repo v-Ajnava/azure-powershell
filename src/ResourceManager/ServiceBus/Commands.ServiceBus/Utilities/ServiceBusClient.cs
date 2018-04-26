@@ -200,7 +200,7 @@ namespace Microsoft.Azure.Commands.ServiceBus
             return new PSSharedAccessAuthorizationRuleAttributes(response);
         }
 
-        public IEnumerable<PSSharedAccessAuthorizationRuleAttributes> ListNamespaceAuthorizationRules(string resourceGroupName, string namespaceName)
+        public IEnumerable<PSSharedAccessAuthorizationRuleAttributes> ListNamespaceAuthorizationRules(string resourceGroupName, string namespaceName, int? maxCount = null)
         {
             Rest.Azure.IPage<SBAuthorizationRule> response = Client.Namespaces.ListAuthorizationRules(resourceGroupName, namespaceName);
             IEnumerable<PSSharedAccessAuthorizationRuleAttributes> resourceList = response.Select(resource => new PSSharedAccessAuthorizationRuleAttributes(resource));
