@@ -88,6 +88,13 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands
         protected const string GeoDRParameterSet = "GeoDRPropertiesSet";
         protected const string MigrationConfigurationParameterSet = "MigrationConfigurationPropertiesSet";
 
+        protected const string PrepareMigrationConfigurationParameterSet = "PrepareMigrationConfigurationSet";
+        protected const string CommitMigrationConfigurationParameterSet = "CommitMigrationConfigurationSet";
+        protected const string AbortMigrationConfigurationParameterSet = "AbortMigrationConfigurationSet";
+        protected const string DeleteMigrationConfigurationParameterSet = "DeleteMigrationConfigurationSet";
+        protected const string ShowMigrationConfigurationParameterSet = "ShowMigrationConfigurationSet";
+
+
         //Alias - used in Cmdlets
         protected const string AliasResourceGroupname = "ResourceGroupName";
         protected const string AliasResourceGroup = "ResourceGroup";
@@ -111,7 +118,8 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands
 
         protected const string ServicebusMigrationConfigurationVerb = "AzureRmServiceBusMigration";
         protected const string ServicebusRevertMigrationConfiguration = "AzureRmServiceBusRevertMigration";
-        protected const string ServicebusStartMigrationConfiguration = "AzureRmServiceBusStartMigration";
+        //protected const string ServicebusStartMigrationConfiguration = "AzureRmServiceBusStartMigration";
+        protected const string ServicebusStartMigrationConfiguration = "AzureRmServiceBusNamespace";
         protected const string ServicebusCompleteMigrationConfiguration = "AzureRmServiceBusCompleteMigration";
 
         protected struct SKU

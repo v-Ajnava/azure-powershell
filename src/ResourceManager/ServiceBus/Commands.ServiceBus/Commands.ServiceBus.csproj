@@ -50,7 +50,7 @@
     <Compile Include="Cmdlets\AzureServiceBusCmdletBase.cs" />
     <Compile Include="Cmdlets\CheckNameAvailability\TestAzureServiceBusCheckNameAvailability.cs" />
     <Compile Include="Cmdlets\MigrationConfiguration\GetAzureServiceBusMigrationConfiguration.cs" />
-    <Compile Include="Cmdlets\MigrationConfiguration\NewAzureServiceBusMigrationConfiguration.cs" />
+    <Compile Include="Cmdlets\MigrationConfiguration\ConvertAzureServiceBusNamespace.cs" />
     <Compile Include="Cmdlets\MigrationConfiguration\RemoveAzureServiceBusMigrationConfiguration.cs" />
     <Compile Include="Cmdlets\MigrationConfiguration\SetAzureServiceBusRevertMigrationConfiguration.cs" />
     <Compile Include="Cmdlets\MigrationConfiguration\SetAzureServiceBusCompleteMigrationConfiguration.cs" />
