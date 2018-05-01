@@ -38,10 +38,6 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Namespace
         [Alias(AliasNamespaceName)]
         public string Name { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Determine the maximum number of Namespaces to return.")]
-        [ValidateNotNull]
-        public int? MaxCount { get; set; }
-
         /// <summary>
         /// Gets a Namespace from the service.
         /// </summary>
@@ -56,19 +52,10 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Namespace
             }
             else if (!string.IsNullOrEmpty(ResourceGroupName) && string.IsNullOrEmpty(Name))
             {
-                if (MaxCount.HasValue)
-                {
-                    // List all namespaces in given resource group 
-                    IEnumerable<PSNamespaceAttributes> namespaceList = Client.ListNamespaces(ResourceGroupName, MaxCount);
-                    WriteObject(namespaceList.ToList(), true);
-                }
-                else
-                {
-                    // List all namespaces in given resource group 
-                    IEnumerable<PSNamespaceAttributes> namespaceList = Client.ListNamespaces(ResourceGroupName);
-                    WriteObject(namespaceList.ToList(), true);
-                }
-                
+                // List all namespaces in given resource group 
+                IEnumerable<PSNamespaceAttributes> namespaceList = Client.ListNamespaces(ResourceGroupName);
+                WriteObject(namespaceList.ToList(), true);
+
             }
             else
             {

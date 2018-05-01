@@ -59,63 +59,18 @@ namespace Microsoft.Azure.Commands.ServiceBus
             return new PSNamespaceAttributes(response);
         }
 
-        public IEnumerable<PSNamespaceAttributes> ListNamespaces(string resourceGroupName, int? maxCount = null)
+        public IEnumerable<PSNamespaceAttributes> ListNamespaces(string resourceGroupName)
         {
-            IEnumerable<PSNamespaceAttributes> resourceList = Enumerable.Empty<PSNamespaceAttributes>();
-            int? skip = 0;
-
-            switch (ReturnmaxCountvalueForSwtich(maxCount))
-            {
-                case 0:
-                    Rest.Azure.IPage<SBNamespace> response = Client.Namespaces.ListByResourceGroup(resourceGroupName, skip: 0, top: maxCount);
-                    resourceList = response.Select(resource => new PSNamespaceAttributes(resource));
-                    break;
-                case 1:
-                    while (maxCount > 0)
-                    {                        
-                        Rest.Azure.IPage<SBNamespace> response1 = Client.Namespaces.ListByResourceGroup(resourceGroupName, skip: skip, top: maxCount);
-                        resourceList.Concat<PSNamespaceAttributes>(response1.Select(resource => new PSNamespaceAttributes(resource)));
-                        skip += maxCount > 100 ? 100 : maxCount;
-                        maxCount = maxCount - 100;                        
-                    }
-                    break;
-                default:
-                    Rest.Azure.IPage<SBNamespace> response2 = Client.Namespaces.ListByResourceGroup(resourceGroupName);
-                    resourceList = response2.Select(resource => new PSNamespaceAttributes(resource));
-                    break;
-
-            }
+            Rest.Azure.IPage<SBNamespace> response2 = Client.Namespaces.ListByResourceGroup(resourceGroupName);
+            IEnumerable<PSNamespaceAttributes> resourceList =  response2.Select(resource => new PSNamespaceAttributes(resource));
             return resourceList;
 
         }
 
-        public IEnumerable<PSNamespaceAttributes> ListAllNamespaces(int? maxCount = null)
-        {           
-
-            IEnumerable<PSNamespaceAttributes> resourceList = Enumerable.Empty<PSNamespaceAttributes>();
-            int? skip = 0;
-
-            switch (ReturnmaxCountvalueForSwtich(maxCount))
-            {
-                case 0:
-                    Rest.Azure.IPage<SBNamespace> response = Client.Namespaces.List(skip: 0, top: maxCount);
-                    resourceList = response.Select(resource => new PSNamespaceAttributes(resource));
-                    break;
-                case 1:
-                    while (maxCount > 0)
-                    {
-                        Rest.Azure.IPage<SBNamespace> response1 = Client.Namespaces.List(skip: skip, top: maxCount);
-                        resourceList.Concat<PSNamespaceAttributes>(response1.Select(resource => new PSNamespaceAttributes(resource)));
-                        skip += maxCount > 100 ? 100 : maxCount;
-                        maxCount = maxCount - 100;
-                    }
-                    break;
-                default:
-                    Rest.Azure.IPage<SBNamespace> response2 = Client.Namespaces.List();
-                    resourceList = response2.Select(resource => new PSNamespaceAttributes(resource));
-                    break;
-
-            }
+        public IEnumerable<PSNamespaceAttributes> ListAllNamespaces()
+        {
+            Rest.Azure.IPage<SBNamespace> response2 = Client.Namespaces.List();
+            IEnumerable<PSNamespaceAttributes> resourceList = response2.Select(resource => new PSNamespaceAttributes(resource));
             return resourceList;
         }
 
@@ -200,7 +155,7 @@ namespace Microsoft.Azure.Commands.ServiceBus
             return new PSSharedAccessAuthorizationRuleAttributes(response);
         }
 
-        public IEnumerable<PSSharedAccessAuthorizationRuleAttributes> ListNamespaceAuthorizationRules(string resourceGroupName, string namespaceName, int? maxCount = null)
+        public IEnumerable<PSSharedAccessAuthorizationRuleAttributes> ListNamespaceAuthorizationRules(string resourceGroupName, string namespaceName)
         {
             Rest.Azure.IPage<SBAuthorizationRule> response = Client.Namespaces.ListAuthorizationRules(resourceGroupName, namespaceName);
             IEnumerable<PSSharedAccessAuthorizationRuleAttributes> resourceList = response.Select(resource => new PSSharedAccessAuthorizationRuleAttributes(resource));
