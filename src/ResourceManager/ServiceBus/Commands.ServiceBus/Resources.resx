@@ -129,6 +129,9 @@
   <data name="CreateNamespaceAuthorizationrule" xml:space="preserve">
     <value>Creating new AuthorizationRule named:{0} for Namespace: {1}</value>
   </data>
+  <data name="CreateNetworkRuleSet" xml:space="preserve">
+    <value>Creaate default NetworkRuleSet</value>
+  </data>
   <data name="CreateQueue" xml:space="preserve">
     <value>Create New Queue:{0} for Namespace:{1}</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="GetIPfilterRule" xml:space="preserve">
     <value>Get IPFilter Rule: {0} under Namespace: {1}</value>
+  </data>
+  <data name="GetNetworkRuleSet" xml:space="preserve">
+    <value>Get default NetworkRuleSet</value>
   </data>
   <data name="GetVNetRule" xml:space="preserve">
     <value>Get VNet Rule: {0} under Namespace: {1}</value>

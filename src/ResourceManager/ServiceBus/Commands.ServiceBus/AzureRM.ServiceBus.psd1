@@ -75,7 +75,7 @@ FunctionsToExport = @()
 CmdletsToExport = 'New-AzureRmServiceBusNamespace', 'Get-AzureRmServiceBusNamespace', 
                'Set-AzureRmServiceBusNamespace', 'Remove-AzureRmServiceBusNamespace',
 			   'New-AzureRmServiceBusIPFilterRule', 'Set-AzureRmServiceBusIPFilterRule', 'Get-AzureRmServiceBusIPFilterRule', 'Remove-AzureRmServiceBusIPFilterRule',
-			   'New-AzureRmServiceBusVNetRule', 'Set-AzureRmServiceBusVNetRule', 'Get-AzureRmServiceBusVNetRule', 'Remove-AzureRmServiceBusVNetRule'
+			   'New-AzureRmServiceBusVNetRule', 'Set-AzureRmServiceBusVNetRule', 'Get-AzureRmServiceBusVNetRule', 'Remove-AzureRmServiceBusVNetRule', 'New-AzureRmServiceBusNetworkRuleSet', 'Get-AzureRmServiceBusNetworkRuleSet'
 
 # Variables to export from this module
 # VariablesToExport = @()

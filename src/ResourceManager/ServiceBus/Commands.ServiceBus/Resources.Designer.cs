@@ -97,6 +97,15 @@ namespace Microsoft.Azure.Commands.ServiceBus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creaate default NetworkRuleSet.
+        /// </summary>
+        internal static string CreateNetworkRuleSet {
+            get {
+                return ResourceManager.GetString("CreateNetworkRuleSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create New Queue:{0} for Namespace:{1}.
         /// </summary>
         internal static string CreateQueue {
@@ -210,6 +219,15 @@ namespace Microsoft.Azure.Commands.ServiceBus {
         internal static string GetIPfilterRule {
             get {
                 return ResourceManager.GetString("GetIPfilterRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get default NetworkRuleSet.
+        /// </summary>
+        internal static string GetNetworkRuleSet {
+            get {
+                return ResourceManager.GetString("GetNetworkRuleSet", resourceCulture);
             }
         }
         

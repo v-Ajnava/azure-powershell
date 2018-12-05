@@ -88,6 +88,7 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands
         protected const string RuleResourceIdParameterSet = "RuleResourceIdSet";
         protected const string IpFilterRuleResourceIdParameterSet = "IpFilterRuleResourceIdParameterSet";
         protected const string VnetRuleResourceIdParameterSet = "VNetRuleResourceIdParameterSet";
+        protected const string NetworkRuleSetRuleResourceIdParameterSet = "NetworkRuleSetRuleResourceIdParameterSet";
 
         //Parameter sets for Properties
         protected const string NamespacePropertiesParameterSet = "NamespacePropertiesSet";
@@ -99,8 +100,10 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands
         protected const string RuleResourceParameterSet = "RulePropertiesSet";
         protected const string RuleResourceActionParameterSet = "RuleActionPropertiesSet";
 
+
         protected const string IpFilterRulePropertiesParameterSet = "IpFilterRulePropertiesSet";
         protected const string VnetRulePropertiesParameterSet = "VNetRulePropertiesSet";
+        protected const string NetworkRuleSetPropertiesParameterSet = "NetworkRuleSetPropertiesSet";
 
         //Alias - used in Cmdlets
         protected const string AliasResourceGroupname = "ResourceGroupName";

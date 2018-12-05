@@ -129,6 +129,10 @@ namespace Microsoft.Azure.Commands.ServiceBus.Test.ScenarioTests
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    string temp = ex.Message;
+                }
                 finally
                 {
                     if (cleanup != null)

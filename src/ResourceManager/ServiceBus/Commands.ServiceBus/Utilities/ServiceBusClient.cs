@@ -244,6 +244,54 @@ namespace Microsoft.Azure.Commands.ServiceBus
         }
         #endregion
 
+        #region NetwrokRuleset
+        public PSNetworkRuleSetAttributes CreateOrUpdateNetworkRuleSet(string resourceGroupName, string namespaceName, PSNetworkRuleSetAttributes parameter)
+        {
+            NetworkRuleSet objNWRuleSet = new NetworkRuleSet() { IpRules = new List<NWRuleSetIpRules>(), VirtualNetworkRules = new List<NWRuleSetVirtualNetworkRules>() };
+
+            if (parameter.IpRulesList != null)
+            {
+                foreach (PSNWRuleSetIpRuleAttributes iprule in parameter.IpRulesList)
+                {
+                    objNWRuleSet.IpRules.Add(new NWRuleSetIpRules() { Action = iprule.Action, IpMask = iprule.IpMask });
+                }
+            }
+
+            if (parameter.VirtualNetworkRulesList != null)
+            {
+                foreach (PSNWRuleSetVirtualNetworkRuleAttributes vnetrule in parameter.VirtualNetworkRulesList)
+                {
+                    objNWRuleSet.VirtualNetworkRules.Add(new NWRuleSetVirtualNetworkRules() {
+                        Subnet = new Subnet(vnetrule.Subnet),
+                        IgnoreMissingVnetServiceEndpoint = vnetrule.IgnoreMissingVnetServiceEndpoint.HasValue ? vnetrule.IgnoreMissingVnetServiceEndpoint : false });
+                }
+            }
+
+            objNWRuleSet.DefaultAction = parameter.DefaultAction;
+
+            var response = Client.Namespaces.CreateNetworkRuleSet(resourceGroupName, namespaceName, objNWRuleSet);
+            return new PSNetworkRuleSetAttributes(response);
+        }
+
+
+        public PSNetworkRuleSetAttributes DeleteNetworkRuleSet(string resourceGroupName, string namespaceName)
+        {
+            NetworkRuleSet objNWRuleSet = new NetworkRuleSet() { };                      
+
+            var response = Client.Namespaces.CreateNetworkRuleSet(resourceGroupName, namespaceName, objNWRuleSet);
+            return new PSNetworkRuleSetAttributes(response);
+        }
+
+
+        public PSNetworkRuleSetAttributes GetNetworkRuleSet(string resourceGroupName, string namespaceName)
+        {
+            var response = Client.Namespaces.GetNetworkRuleSet(resourceGroupName, namespaceName);
+            return new PSNetworkRuleSetAttributes(response);
+        }
+
+        #endregion
+
+
         public static string GenerateRandomKey()
         {
             byte[] key256 = new byte[32];
