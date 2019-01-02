@@ -69,8 +69,24 @@ Removes the subscription provided through ARM Id in $resourceid/string for -Reso
 
 ## PARAMETERS
 
-### -AsJob
-Run cmdlet in the background
+### -AutoDeleteOnIdle
+Auto Delete On Idle - Specifies the [TimeSpan](https://msdn.microsoft.com/library/system.timespan.aspx) idle interval after which the subscription is automatically deleted.
+The minimum duration is 5 minutes.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -DeadLetteringOnFilterEvaluationExceptions
+Allow dead lettering when filter evaluation exceptions occur.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -81,6 +97,40 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DeadLetteringOnMessageExpiration
+DeadLetteringOnMessageExpiration - A boolean Value that indicates whether a subscription has dead letter support when a message expires.
+
+```yaml
+Type: System.Nullable`1[System.Boolean]
+Parameter Sets: (All)
+Aliases:
+Accepted values: TRUE, FALSE
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -DefaultMessageTimeToLive
+Timespan to live value.
+This is the duration after which the message expires, starting from when the message is sent to Service Bus.
+This is the default value used when TimeToLive is not set on a message itself.
+For Standard = Timespan.Max and Basic = 14 dyas
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -99,18 +149,81 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InputObject
-Service Bus Subscription Object
+### -EnableBatchedOperations
+Enable Batched Operations - A boolean value that indicates whether server-side batched operations are enabled
 
 ```yaml
-Type: Microsoft.Azure.Commands.ServiceBus.Models.PSSubscriptionAttributes
-Parameter Sets: SubscriptionInputObjectSet
+Type: System.Nullable`1[System.Boolean]
+Parameter Sets: (All)
+Aliases:
+Accepted values: TRUE, FALSE
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ForwardDeadLetteredMessagesTo
+Queue/Topic name to forward the Dead Letter message
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: 0
+Required: False
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ForwardTo
+Queue/Topic name to forward the messages
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -LockDuration
+LockDuration - timespan value for the subscription.
+The default value is 1 minute.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -MaxDeliveryCount
+MaxDeliveryCount - the maximum delivery count.
+A message is automatically deadlettered after this number of deliveries.
+
+```yaml
+Type: System.Nullable`1[System.Int32]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -119,7 +232,7 @@ Subscription Name
 
 ```yaml
 Type: System.String
-Parameter Sets: SubscriptionPropertiesSet
+Parameter Sets: (All)
 Aliases: SubscriptionName
 
 Required: True
@@ -134,7 +247,7 @@ Namespace Name
 
 ```yaml
 Type: System.String
-Parameter Sets: SubscriptionPropertiesSet
+Parameter Sets: (All)
 Aliases: NamespaceName
 
 Required: True
@@ -144,18 +257,19 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -PassThru
-Specifying this will return true if the command was successful.
+### -RequiresSession
+RequiresSession - A boolean value indicating if a subscription supports the concept of sessions.
 
 ```yaml
-Type: System.Management.Automation.SwitchParameter
+Type: System.Nullable`1[System.Boolean]
 Parameter Sets: (All)
 Aliases:
+Accepted values: TRUE, FALSE
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -164,23 +278,8 @@ The name of the resource group
 
 ```yaml
 Type: System.String
-Parameter Sets: SubscriptionPropertiesSet
+Parameter Sets: (All)
 Aliases: ResourceGroup
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -ResourceId
-Service Bus Subscription Resource Id
-
-```yaml
-Type: System.String
-Parameter Sets: SubscriptionResourceIdSet
-Aliases:
 
 Required: True
 Position: 0
@@ -194,7 +293,7 @@ Topic Name
 
 ```yaml
 Type: System.String
-Parameter Sets: SubscriptionPropertiesSet
+Parameter Sets: (All)
 Aliases: TopicName
 
 Required: True

@@ -42,12 +42,12 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Topic
         [Alias(AliasTopicName)]
         public string Name { get; set; }
 
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "EnablePartitioning")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "EnablePartitioning - A boolean value that indicates whether the topic to be partitioned across multiple message brokers is enabled.")]
         [ValidateSet("TRUE", "FALSE", IgnoreCase = true)]
         [ValidateNotNullOrEmpty]
         public bool? EnablePartitioning { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "Auto Delete On Idle - the TimeSpan idle interval after which the queue is automatically deleted. The minimum duration is 5 minutes.")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "Auto Delete On Idle - the TimeSpan idle interval after which the topic is automatically deleted. The minimum duration is 5 minutes.")]
         [ValidateNotNullOrEmpty]
         public string AutoDeleteOnIdle { get; set; }
 
@@ -64,21 +64,22 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Topic
         [ValidateNotNullOrEmpty]
         public bool? EnableBatchedOperations { get; set; }        
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "EnableExpress - a value that indicates whether Express Entities are enabled. An express queue holds a message in memory temporarily before writing it to persistent storage.")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "EnableExpress - a value that indicates whether Express Entities are enabled. An express topic holds a message in memory temporarily before writing it to persistent storage.")]
         [ValidateSet("TRUE", "FALSE", IgnoreCase = true)]
         [ValidateNotNullOrEmpty]
         public bool? EnableExpress { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "MaxSizeInMegabytes - the maximum size of the queue in megabytes, which is the size of memory allocated for the queue.")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "MaxSizeInMegabytes - the maximum size of the topic in megabytes, which is the size of memory allocated for the queue. Allowed values are [1024 or 2048 or 3072 or 4096 or 5120]")]
         [ValidateNotNullOrEmpty]
+        [ValidateSet("1024", "2048", "3072", "4096", "5120")]
         public long? MaxSizeInMegabytes { get; set; }
         
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "RequiresDuplicateDetection - a value that indicates whether the queue supports the concept of session")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "RequiresDuplicateDetection - A boolean value indicating if this topic requires duplicate detection.")]
         [ValidateSet("TRUE", "FALSE", IgnoreCase = true)]
         [ValidateNotNullOrEmpty]
         public bool? RequiresDuplicateDetection { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "SupportOrdering - the value indicating it supports ordering")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "SupportOrdering - A boolean value that indicates whether the topic supports ordering.")]
         [ValidateSet("TRUE", "FALSE", IgnoreCase = true)]
         [ValidateNotNullOrEmpty]
         public bool? SupportOrdering { get; set; }

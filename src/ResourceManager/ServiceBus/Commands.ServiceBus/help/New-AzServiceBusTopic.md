@@ -56,7 +56,8 @@ Creates a new Service Bus topic `SB-Topic_exampl1` in the specified Service Bus 
 ## PARAMETERS
 
 ### -AutoDeleteOnIdle
-Specifies the [TimeSpan](https://msdn.microsoft.com/library/system.timespan.aspx) idle interval after which the topic is automatically deleted. The minimum duration is 5 minutes.
+Auto Delete On Idle - Specifies the [TimeSpan](https://msdn.microsoft.com/library/system.timespan.aspx) idle interval after which the topic is automatically deleted.
+The minimum duration is 5 minutes.
 
 ```yaml
 Type: System.String
@@ -71,7 +72,10 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultMessageTimeToLive
-Specifies the duration after which the message expires, starting from when the message is sent to Service Bus.
+Timespan to live value.
+This is the duration after which the message expires, starting from when the message is sent to Service Bus.
+This is the default value used when TimeToLive is not set on a message itself.
+For Standard = Timespan.Max and Basic = 14 dyas
 
 ```yaml
 Type: System.String
@@ -86,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultProfile
-The credentials, account, tenant, and subscription used for communication with azure.
+The credentials, account, tenant, and subscription used for communication with Azure.
 
 ```yaml
 Type: Microsoft.Azure.Commands.Common.Authentication.Abstractions.Core.IAzureContextContainer
@@ -101,7 +105,8 @@ Accept wildcard characters: False
 ```
 
 ### -DuplicateDetectionHistoryTimeWindow
-Specifies the [TimeSpan](https://msdn.microsoft.com/library/system.timespan.aspx) structure that defines the duration of the duplicate detection history. The default value is 10 minutes.
+Duplicate Detection History Time Window - TimeSpan, that defines the duration of the duplicate detection history.
+The default value is 10 minutes.
 
 ```yaml
 Type: System.String
@@ -116,7 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableBatchedOperations
-Indicates whether server-side batched operations are enabled.
+Enable Batched Operations - value that indicates whether server-side batched operations are enabled
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]
@@ -132,7 +137,8 @@ Accept wildcard characters: False
 ```
 
 ### -EnableExpress
-Indicates whether Express Entities are enabled. An express queue holds a message in memory temporarily before writing it to persistent storage.
+EnableExpress - a value that indicates whether Express Entities are enabled.
+An express topic holds a message in memory temporarily before writing it to persistent storage.
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]
@@ -148,7 +154,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnablePartitioning
-Specifies whether to enable the topic to be partitioned across multiple message brokers. 
+EnablePartitioning - A boolean value that indicates whether the topic to be partitioned across multiple message brokers is enabled.
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]
@@ -164,12 +170,14 @@ Accept wildcard characters: False
 ```
 
 ### -MaxSizeInMegabytes
-The maximum size of the topic in megabytes, which is the size of memory allocated for the topic.
+MaxSizeInMegabytes - the maximum size of the topic in megabytes, which is the size of memory allocated for the queue.
+Allowed values are \[1024 or 2048 or 3072 or 4096 or 5120\]
 
 ```yaml
 Type: System.Nullable`1[System.Int64]
 Parameter Sets: (All)
 Aliases:
+Accepted values: 1024, 2048, 3072, 4096, 5120
 
 Required: False
 Position: Named
@@ -179,7 +187,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-Topic Name.
+Topic Name
 
 ```yaml
 Type: System.String
@@ -194,7 +202,7 @@ Accept wildcard characters: False
 ```
 
 ### -Namespace
-Namespace Name.
+Namespace Name
 
 ```yaml
 Type: System.String
@@ -209,7 +217,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequiresDuplicateDetection
-Indicates whether the topic requires duplication detection.
+RequiresDuplicateDetection - A boolean value indicating if this topic requires duplicate detection.
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]
@@ -240,7 +248,7 @@ Accept wildcard characters: False
 ```
 
 ### -SizeInBytes
-Specifies the size of the topic in bytes.
+SizeInBytes - the size of the queue in bytes
 
 ```yaml
 Type: System.Nullable`1[System.Int64]
@@ -255,7 +263,7 @@ Accept wildcard characters: False
 ```
 
 ### -SupportOrdering
-Indicates whether the topic supports ordering.
+SupportOrdering - A boolean value that indicates whether the topic supports ordering.
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]

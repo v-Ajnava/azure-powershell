@@ -47,7 +47,7 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Subscription
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
                 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "Auto Delete On Idle - the TimeSpan idle interval after which the queue is automatically deleted. The minimum duration is 5 minutes.")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "Auto Delete On Idle - timeSpan format value for idle interval after which the subscription is automatically deleted. The minimum duration is 5 minutes.")]
         [ValidateNotNullOrEmpty]
         public string AutoDeleteOnIdle { get; set; }
 
@@ -55,27 +55,27 @@ namespace Microsoft.Azure.Commands.ServiceBus.Commands.Subscription
         [ValidateNotNullOrEmpty]
         public string DefaultMessageTimeToLive { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "Dead Lettering On Message Expiration")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "DeadLetteringOnMessageExpiration - A boolean Value that indicates whether a subscription has dead letter support when a message expires.")]
         [ValidateSet("TRUE", "FALSE", IgnoreCase = true)]
         [ValidateNotNullOrEmpty]
         public bool? DeadLetteringOnMessageExpiration { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Value that indicates whether a subscription has dead letter support on filter evaluation exceptions.")]
+        [Parameter(Mandatory = false, HelpMessage = "Allow dead lettering when filter evaluation exceptions occur.")]
         public SwitchParameter DeadLetteringOnFilterEvaluationExceptions { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "Enable Batched Operations - value that indicates whether server-side batched operations are enabled")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "Enable Batched Operations - A boolean value that indicates whether server-side batched operations are enabled")]
         [ValidateSet("TRUE", "FALSE", IgnoreCase = true)]
         [ValidateNotNullOrEmpty]
         public bool? EnableBatchedOperations { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "Lock Duration")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "LockDuration - timespan value for the subscription. The default value is 1 minute.")]
         public string LockDuration { get; set; }
         
         [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "MaxDeliveryCount - the maximum delivery count. A message is automatically deadlettered after this number of deliveries.")]
         [ValidateNotNullOrEmpty]
         public int? MaxDeliveryCount { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "RequiresSession - the value indicating if this queue requires duplicate detection.")]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "RequiresSession - A boolean value indicating if a subscription supports the concept of sessions.")]
         [ValidateSet("TRUE", "FALSE", IgnoreCase = true)]
         [ValidateNotNullOrEmpty]
         public bool? RequiresSession { get; set; }

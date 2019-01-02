@@ -61,8 +61,12 @@ Creates a new Service Bus queue `SB-Queue_example1` in the specified Service Bus
 
 ## PARAMETERS
 
+## PARAMETERS
+
 ### -AutoDeleteOnIdle
-Specifies the [TimeSpan](https://msdn.microsoft.com/library/system.timespan.aspx) idle interval, after which the queue is automatically deleted. The minimum duration is 5 minutes.
+Auto Delete On Idle - Specifies the [TimeSpan](https://msdn.microsoft.com/library/system.timespan.aspx) idle interval after which the queue is automatically deleted.
+The minimum duration is 5 minutes (PT5M).
+by Default set to TimeSpan.Max (P10675199DT2H48M5.4775807S)
 
 ```yaml
 Type: System.String
@@ -77,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -DeadLetteringOnMessageExpiration
-Dead Lettering On Message Expiration
+DeadLetteringOnMessageExpiration - A boolean value that indicates whether this queue has dead letter support when a message expires.
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]
@@ -126,7 +130,8 @@ Accept wildcard characters: False
 ```
 
 ### -DuplicateDetectionHistoryTimeWindow
-Specifies the duplicate detection history time window, a [TimeSpan](https://msdn.microsoft.com/library/system.timespan.aspx) valuethat defines the duration of the duplicate detection history. The default value is 10 minutes.
+Duplicate Detection History Time Window - TimeSpan, that defines the duration of the duplicate detection history.
+The default value is 10 minutes (PT10M).
 
 ```yaml
 Type: System.String
@@ -173,7 +178,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnablePartitioning
-EnablePartitioning
+EnablePartitioning - A boolean value that indicates whether the queue is to be partitioned across multiple message brokers.
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]
@@ -219,7 +224,8 @@ Accept wildcard characters: False
 ```
 
 ### -LockDuration
-Lock Duration
+timespan format for duration of a peek-lock; that is, the amount of time that the message is locked for other receivers.
+The maximum value for LockDuration is 5 minutes; the default value is 1 minute.
 
 ```yaml
 Type: System.String
@@ -234,8 +240,10 @@ Accept wildcard characters: False
 ```
 
 ### -MaxDeliveryCount
-MaxDeliveryCount - the maximum delivery count.
+MaxDeliveryCount - The maximum delivery count.
 A message is automatically deadlettered after this number of deliveries.
+default value is 10.
+Min is 1.
 
 ```yaml
 Type: System.Nullable`1[System.Int32]
@@ -251,11 +259,13 @@ Accept wildcard characters: False
 
 ### -MaxSizeInMegabytes
 MaxSizeInMegabytes - the maximum size of the queue in megabytes, which is the size of memory allocated for the queue.
+Allowed values are \[1024 or 2048 or 3072 or 4096 or 5120\]
 
 ```yaml
 Type: System.Nullable`1[System.Int64]
 Parameter Sets: (All)
 Aliases:
+Accepted values: 1024, 2048, 3072, 4096, 5120
 
 Required: False
 Position: Named
@@ -310,7 +320,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequiresDuplicateDetection
-RequiresDuplicateDetection - a value that indicates whether the queue supports the concept of session
+RequiresDuplicateDetection - a boolean value that indicates whether the queue supports the concept of session
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]
@@ -326,7 +336,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequiresSession
-RequiresSession - the value indicating if this queue requires duplicate detection
+RequiresSession - the boolean value indicating if this queue requires duplicate detection
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]
