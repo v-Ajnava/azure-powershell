@@ -77,13 +77,34 @@ function EventHubsTests
 	$createdEventHub.CaptureDescription.Destination.Name = "EventHubArchive.AzureBlockBlob"
 	$createdEventHub.CaptureDescription.Destination.BlobContainer = "container01"
 	$createdEventHub.CaptureDescription.Destination.ArchiveNameFormat = "{Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}"
-	$createdEventHub.CaptureDescription.Destination.StorageAccountResourceId = "/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourcegroups/v-ajnavtest/providers/Microsoft.Storage/storageAccounts/testingsdkeventhub"
+	$createdEventHub.CaptureDescription.Destination.StorageAccountResourceId = "/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourcegroups/v-ajnavtest/providers/Microsoft.Storage/storageAccounts/testingsdkeventhub11"
 		
 	$result = Set-AzEventHub -ResourceGroup $resourceGroupName -Namespace $namespaceName -Name $createdEventHub.Name  -InputObject $createdEventHub
 	
 	# Assert
 	Assert-AreEqual $result.MessageRetentionInDays $createdEventHub.MessageRetentionInDays
 	Assert-AreEqual $result.CaptureDescription.Destination.BlobContainer "container01"
+
+
+	# Update the Created EventHub - DLS
+	Write-Debug " Update the first EventHub"
+	$createdEventHub.MessageRetentionInDays = 4	
+	$createdEventHub.CaptureDescription = New-Object -TypeName Microsoft.Azure.Commands.EventHub.Models.PSCaptureDescriptionAttributes
+	$createdEventHub.CaptureDescription.Enabled = $true
+	$createdEventHub.CaptureDescription.IntervalInSeconds  = 120
+	$createdEventHub.CaptureDescription.Encoding  = "Avro"
+	$createdEventHub.CaptureDescription.SizeLimitInBytes = 10485763
+	$createdEventHub.CaptureDescription.Destination.Name = "EventHubArchive.AzureDataLake"
+	$createdEventHub.CaptureDescription.Destination.DataLakeAccountName = "testingsdkeh"
+	$createdEventHub.CaptureDescription.Destination.ArchiveNameFormat = "{Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}"
+	$createdEventHub.CaptureDescription.Destination.DataLakeFolderPath = "/testingfoldereh"
+	$createdEventHub.CaptureDescription.Destination.DataLakeSubscriptionId = "854d368f-1828-428f-8f3c-f2affa9b2f7d"
+		
+	$result = Set-AzEventHub -ResourceGroup $resourceGroupName -Namespace $namespaceName -Name $createdEventHub.Name  -InputObject $createdEventHub
+	
+	# Assert
+	Assert-AreEqual $result.MessageRetentionInDays $createdEventHub.MessageRetentionInDays
+	Assert-AreEqual $result.CaptureDescription.Destination.DataLakeFolderPath "/testingfoldereh"
 
 	# Create New EventHub with InputObject
 	$resultNew = New-AzEventHub -ResourceGroup $resourceGroupName -Namespace $namespaceName -Name $createdEventHub.Name  -InputObject $result

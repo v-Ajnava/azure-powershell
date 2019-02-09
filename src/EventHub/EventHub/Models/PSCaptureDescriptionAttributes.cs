@@ -55,6 +55,7 @@ namespace Microsoft.Azure.Commands.EventHub.Models
             Encoding = (EnumEncodingCaptureDescription)captureDescResource.Encoding;
             IntervalInSeconds = captureDescResource.IntervalInSeconds;
             SizeLimitInBytes = captureDescResource.SizeLimitInBytes;
+            
             if (captureDescResource.Destination != null)
                 Destination = new PSDestinationAttributes(captureDescResource.Destination);
             else

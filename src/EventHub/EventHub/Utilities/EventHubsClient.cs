@@ -268,6 +268,9 @@ namespace Microsoft.Azure.Commands.Eventhub
                 Parameter1.CaptureDescription.Destination.BlobContainer = parameter.CaptureDescription.Destination.BlobContainer;
                 Parameter1.CaptureDescription.Destination.ArchiveNameFormat = parameter.CaptureDescription.Destination.ArchiveNameFormat;
                 Parameter1.CaptureDescription.Destination.StorageAccountResourceId = parameter.CaptureDescription.Destination.StorageAccountResourceId;
+                Parameter1.CaptureDescription.Destination.DataLakeAccountName = parameter.CaptureDescription.Destination.DataLakeAccountName;
+                Parameter1.CaptureDescription.Destination.DataLakeFolderPath = parameter.CaptureDescription.Destination.DataLakeFolderPath;
+                Parameter1.CaptureDescription.Destination.DataLakeSubscriptionId = parameter.CaptureDescription.Destination.DataLakeSubscriptionId;
             }
 
             var response = Client.EventHubs.CreateOrUpdate(resourceGroupName, namespaceName, eventHubName, Parameter1);

@@ -32,6 +32,9 @@ namespace Microsoft.Azure.Commands.EventHub.Models
                 StorageAccountResourceId = destinationResource.StorageAccountResourceId;
                 BlobContainer = destinationResource.BlobContainer;
                 ArchiveNameFormat = destinationResource.ArchiveNameFormat;
+                DataLakeAccountName = destinationResource.DataLakeAccountName;
+                DataLakeFolderPath = destinationResource.DataLakeFolderPath;
+                DataLakeSubscriptionId = destinationResource.DataLakeSubscriptionId;
             }
         }
                
@@ -59,5 +62,9 @@ namespace Microsoft.Azure.Commands.EventHub.Models
         /// irrespective of order
         /// </summary>
         public string ArchiveNameFormat { get; set; }
+
+        public string DataLakeAccountName { get; set; }
+        public string DataLakeFolderPath { get; set; }
+        public string DataLakeSubscriptionId { get; set; }
     }
 }
