@@ -71,6 +71,7 @@ function EventHubsTests
 	$createdEventHub.MessageRetentionInDays = 4	
 	$createdEventHub.CaptureDescription = New-Object -TypeName Microsoft.Azure.Commands.EventHub.Models.PSCaptureDescriptionAttributes
 	$createdEventHub.CaptureDescription.Enabled = $true
+	$createdEventHub.CaptureDescription.SkipEmptyArchives = $true
 	$createdEventHub.CaptureDescription.IntervalInSeconds  = 120
 	$createdEventHub.CaptureDescription.Encoding  = "Avro"
 	$createdEventHub.CaptureDescription.SizeLimitInBytes = 10485763
@@ -84,6 +85,7 @@ function EventHubsTests
 	# Assert
 	Assert-AreEqual $result.MessageRetentionInDays $createdEventHub.MessageRetentionInDays
 	Assert-AreEqual $result.CaptureDescription.Destination.BlobContainer "container01"
+	Assert-True { $result.CaptureDescription.SkipEmptyArchives }
 
 
 	# Update the Created EventHub - DLS
@@ -120,10 +122,10 @@ function EventHubsTests
 	{
 		$delete1 = Remove-AzEventHub -ResourceGroup $resourceGroupName -Namespace $namespaceName -Name $createdEventHubList[$i].Name		
 	}
-	Write-Debug " Delete namespaces"
+	Write-Debug "Delete namespaces"
 	Remove-AzEventHubNamespace -ResourceGroup $resourceGroupName -Namespace $namespaceName
 
-	Write-Debug " Delete resourcegroup"
+	Write-Debug "Delete resourcegroup"
 	#Remove-AzResourceGroup -Name $resourceGroupName -Force
 }
 
