@@ -23,6 +23,7 @@ using Microsoft.Azure.Graph.RBAC.Version1_6.Models;
 using Microsoft.Azure.Management.Subscription;
 using Microsoft.Azure.Management.Subscription.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -86,18 +87,31 @@ namespace Microsoft.Azure.Commands.Subscription.Cmdlets
         [Alias("OwnerSPN", "OwnerServicePrincipalName")]
         public string[] OwnerApplicationId { get; set; }
 
+        [Parameter(Mandatory = false, HelpMessage = "The AdditionalParameters subscription.")]
+        public Hashtable AdditionalParameters { get; set; }
+
+
+
         public override void ExecuteCmdlet()
         {
             if (this.ShouldProcess(target: this.Name, action: "Create subscription"))
             {
                 var owners = this.ResolveObjectIds(this.OwnerObjectId, this.OwnerApplicationId, this.OwnerSignInName).Select(id => new AdPrincipal() { ObjectId = id }).ToArray();
 
+                Dictionary<string, object> create = new Dictionary<string, object>();
+
+                foreach (DictionaryEntry test in AdditionalParameters)
+                {
+                    create.Add(test.Key.ToString(), test.Value);
+                }
+
                 // Create the subscription.
                 var result = this.SubscriptionClient.SubscriptionFactory.CreateSubscriptionInEnrollmentAccount(EnrollmentAccountObjectId, new SubscriptionCreationParameters()
                 {
                     DisplayName = this.Name,
                     OfferType = this.OfferType,
-                    Owners = owners
+                    Owners = owners,
+                    AdditionalParameters = new Dictionary<string, object>(create)
                 });
 
                 // Write output.
